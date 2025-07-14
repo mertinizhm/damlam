@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Damla</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #ffb6c1, #ffe4e1);
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 3rem;
+      color: white;
+      background-color: #ff69b4;
+      padding: 20px 40px;
+      border-radius: 20px;
+      z-index: 10;
+      position: relative;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 15px 30px;
+      font-size: 1.2rem;
+      color: white;
+      background-color: #ff1493;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      z-index: 10;
+      position: relative;
+    }
+
+    button:hover {
+      background-color: #ff69b4;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .cat {
+      position: absolute;
+      font-size: 2rem;
+      animation: floatCat linear infinite;
+    }
+
+    @keyframes floatCat {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>DAMLA</h1>
+  <button onclick="playSong()">BANA TIKLA</button>
+  <audio id="song">
+    <source src="https://cdn.pixabay.com/audio/2023/03/02/audio_ef9b7c3b4e.mp3" type="audio/mpeg" />
+    Tarayıcınız bu ses öğesini desteklemiyor.
+  </audio>
+
+  <script>
+    function playSong() {
+      const audio = document.getElementById("song");
+      audio.play();
+    }
+
+    function createFlyingCat() {
+      const cat = document.createElement("div");
+      cat.className = "cat";
+      cat.textContent = "🐱";
+      const size = Math.random() * 24 + 24; // 24px - 48px
+      cat.style.fontSize = size + "px";
+      cat.style.left = Math.random() * window.innerWidth + "px";
+      cat.style.animationDuration = 5 + Math.random() * 5 + "s";
+      document.body.appendChild(cat);
+
+      setTimeout(() => {
+        cat.remove();
+      }, 10000);
+    }
+
+    setInterval(createFlyingCat, 800);
+  </script>
+</body>
+</html>
